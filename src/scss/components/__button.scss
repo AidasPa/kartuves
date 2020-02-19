@@ -1,0 +1,29 @@
+.btn {
+  &--success {
+    -webkit-box-direction: normal;
+    box-sizing: border-box;
+    overflow: visible;
+    margin: 0;
+    font-family: inherit;
+    text-transform: none;
+    -webkit-appearance: button;
+    font-weight: 400;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    border: 0 solid transparent;
+    padding: 0.467rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6rem;
+    border-radius: 0.267rem;
+    transition: none;
+    margin-right: 1rem !important;
+    margin-bottom: 1rem !important;
+    border-color: #23bd70 !important;
+    background-color: #39da8a !important;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(57, 218, 138, 0.5) !important;
+  }
+}

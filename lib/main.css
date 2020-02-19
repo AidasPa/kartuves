@@ -1,3 +1,46 @@
+.card {
+  background: #fff;
+  width: 500px;
+  height: 200px;
+  box-shadow: 0px 0px 7px 2px rgba(0, 0, 0, 0.3);
+  padding-top: 5px;
+  padding: 20px;
+}
+
+.pos {
+  position: relative;
+}
+.pos--center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+:root {
+  --blue: #5a8dee;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #ff5b5c;
+  --orange: #fd7e14;
+  --yellow: #fdac41;
+  --green: #39da8a;
+  --teal: #20c997;
+  --cyan: #00cfdd;
+  --white: #ffffff;
+  --gray: #475f7b;
+  --gray-dark: #394c62;
+  --primary: #5a8dee;
+  --secondary: #475f7b;
+  --success: #39da8a;
+  --info: #00cfdd;
+  --warning: #fdac41;
+  --danger: #ff5b5c;
+  --light: #a3afbd;
+  --dark: #394c62;
+}
+
 body {
   background: #4279ee;
   font-family: "Poppins", sans-serif;
