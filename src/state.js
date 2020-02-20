@@ -7,16 +7,23 @@ class State {
   get() {
     return this.state;
   }
-  set_elements(element) {
-    this.rendering = element;
-  }
   set(newState) {
-    for (var s in newState) {
-      this.state[s] = newState[s];
-    }
+    this.state = this.appendObject(this.state, newState);
     return new Promise(res => {
-      res(this.state);
+      res();
     });
+  }
+
+  appendObject(oldState, newState) {
+    for (const s in newState) {
+      if (oldState[s] !== undefined) {
+        if (typeof newProp === "object") {
+          oldState[s] = this.appendObject(oldState[s], newState[s]);
+        } else {
+          oldState[s] = newState[s];
+        }
+      }
+    }
   }
 }
 

@@ -1,0 +1,42 @@
+.key {
+  //   background: rgb(0, 0, 0);
+  //   background: linear-gradient(
+  //     180deg,
+  //     rgba(0, 0, 0, 1) 0%,
+  //     rgba(84, 84, 84, 1) 77%
+  //   );
+  background: $dark;
+  height: 50px;
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+  line-height: 50px;
+  border-color: darken($dark, 5);
+  box-shadow: 0 2px 4px 0 rgba($dark, 0.5);
+  &:hover {
+    box-shadow: 0 4px 12px 0 rgba($dark, 0.6);
+    background-color: lighten($dark, 5);
+    cursor: pointer;
+  }
+  &--correct {
+    background: $success !important;
+    border-color: darken($success, 5) !important;
+    box-shadow: 0 2px 4px 0 rgba($success, 0.5) !important;
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba($success, 0.6) !important;
+      background-color: lighten($success, 5) !important;
+    }
+  }
+  &--wrong {
+    background: $danger !important;
+    border-color: darken($danger, 5) !important;
+    box-shadow: 0 2px 4px 0 rgba($danger, 0.5) !important;
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba($danger, 0.6) !important;
+      background-color: lighten($danger, 5) !important;
+    }
+  }
+}

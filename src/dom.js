@@ -8,7 +8,6 @@ const dom = {
   },
   reinitialize: function() {
     console.log("k");
-    
     this.events.forEach(element => {
       document
         .querySelector(`[data=${element.hash}]`)
@@ -18,9 +17,12 @@ const dom = {
     });
   },
   h_render: function(element) {
-    this.application.appendChild(element);
-    document.querySelectorAll("div")[1].remove()
+    const focused = document.activeElement;
+    console.log(focused);
     
+    document.querySelectorAll("div")[1].remove();
+    this.application.appendChild(element);
+    focused.focus();
   },
   render: function(element) {
     this.application.appendChild(element);
@@ -41,18 +43,19 @@ const dom = {
 
           if (name === "className") name = "class";
 
-          if (name !== "onClick") {
+          if (name !== "onClick" && name !== "onChange") {
             if (value === true) {
               element.setAttribute(name, name);
             } else if (value !== false && value != null) {
               element.setAttribute(name, value.toString());
             }
           } else {
-            // const hash = Math.random() * 10;
-            // element.setAttribute("data", hash);
-            // this.events.push({ hash: hash, event: value() });
-            element.addEventListener("click", () => {
-              value();
+            let event = name.toLowerCase().substr(2);
+            if (element.nodeName == "INPUT" && event == "change") {
+              event = "input";
+            }
+            element.addEventListener(event, e => {
+              value(e);
             });
           }
         }
