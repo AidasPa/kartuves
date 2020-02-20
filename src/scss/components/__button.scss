@@ -1,4 +1,7 @@
 .btn {
+  &--block {
+    width: 100%;
+  }
   &--success {
     -webkit-box-direction: normal;
     box-sizing: border-box;
@@ -25,5 +28,12 @@
     color: #fff;
     cursor: pointer;
     box-shadow: 0 2px 4px 0 rgba(57, 218, 138, 0.5) !important;
+    &:hover {
+      box-shadow: 0 4px 12px 0 rgba(57, 218, 138, 0.6) !important;
+      background-color: #4ede97 !important;
+    }
+    &:active {
+      background-color: #27d27d !important;
+    }
   }
 }

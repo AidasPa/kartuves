@@ -1,19 +1,17 @@
 import dom from "../dom.js";
-
-function Card(title, body, buttons = []) {
+function Card(props) {
   return (
-    <div class="card pos--center">
-      <div class="card__title">
-        <h1>{title}</h1>
-      </div>
-      <hr/>
-      <div class="card__body">
-        <p>{body}</p>
+    <div className="card pos--center">
+      <div className="card__title">
+        <h1>{props.title}</h1>
       </div>
       <hr />
-      {buttons.map(btn => {
-        return <button class={"btn--success"}>asd</button>
-      })}
+      <div className="card__body">{props._children}</div>
+      {props.goBtn ? (
+        <button className="btn--success btn--block">Go!</button>
+      ) : (
+        ""
+      )}
     </div>
   );
 }
