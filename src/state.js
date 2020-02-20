@@ -1,19 +1,26 @@
+import dom from "./dom.js";
+
 class State {
   constructor(state) {
     this.state = state;
   }
-  getState() {
+  get() {
     return this.state;
   }
-  setState(newState) {
+  set_elements(element) {
+    this.rendering = element;
+  }
+  set(newState) {
     for (var s in newState) {
       this.state[s] = newState[s];
     }
+    return new Promise(res => {
+      res(this.state);
+    });
   }
 }
 
-const appState = new State({});
-export default appState;
+export default State;
 
 /*
  */

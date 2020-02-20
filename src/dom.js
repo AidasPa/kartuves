@@ -1,6 +1,26 @@
 const dom = {
-  mount: function(selector) {
+  init: function() {
+    this.events = [];
+  },
+  mount: function(selector, elementToRender) {
     this.application = selector;
+    this.render(elementToRender);
+  },
+  reinitialize: function() {
+    console.log("k");
+    
+    this.events.forEach(element => {
+      document
+        .querySelector(`[data=${element.hash}]`)
+        .addEventListener("click", e => {
+          element.event();
+        });
+    });
+  },
+  h_render: function(element) {
+    this.application.appendChild(element);
+    document.querySelectorAll("div")[1].remove()
+    
   },
   render: function(element) {
     this.application.appendChild(element);
@@ -18,6 +38,7 @@ const dom = {
       for (let name in attrs) {
         if (name && attrs.hasOwnProperty(name)) {
           let value = attrs[name];
+
           if (name === "className") name = "class";
 
           if (name !== "onClick") {
@@ -27,6 +48,9 @@ const dom = {
               element.setAttribute(name, value.toString());
             }
           } else {
+            // const hash = Math.random() * 10;
+            // element.setAttribute("data", hash);
+            // this.events.push({ hash: hash, event: value() });
             element.addEventListener("click", () => {
               value();
             });
@@ -53,4 +77,5 @@ const dom = {
     }
   }
 };
+// dom.init();
 export default dom;
