@@ -1,12 +1,13 @@
 @import "abstracts/_variables";
 @import "components/_card", "components/_button", "components/_letter",
-  "components/_key";
+  "components/_key", "components/_modal";
 @import "layout/_positions", "layout/forms";
 hr {
   border: none;
   border-top: 1px solid #d9d9d9;
 }
 body {
+  margin: 0;
   background: rgb(66, 121, 238);
   font-family: "Poppins", sans-serif;
 }

@@ -1,7 +1,7 @@
 import dom from "../dom.js";
 import Card from "../components/Card.js";
 
-let word;
+let word = "";
 let difficulty;
 
 function handleChange(e) {
@@ -14,41 +14,41 @@ function handleChange(e) {
   }
 }
 function saveWord() {
-  console.log('saveWord pries set', JSON.parse(JSON.stringify(appState)))
-  appState.set({
-    game: {
-      word: word
-    }
-  });
-  console.log('saveWord po set', JSON.parse(JSON.stringify(appState)))
-  // sessionStorage.setItem("game", true); // dev only
-  // sessionStorage.setItem("word", word); // dev only
-  let heartNumber = 7;
+  if (word.length !== 0) {
+    appState.set({
+      game: {
+        word: word,
+        started: true
+      }
+    });
+    // sessionStorage.setItem("game", true); // dev only
+    // sessionStorage.setItem("word", word); // dev only
+    let heartNumber = 7;
 
-  switch (parseInt(difficulty)) {
-    case 0:
-      heartNumber = 7;
-      break;
-    case 1:
-      heartNumber = 5;
-      break;
-    case 2:
-      heartNumber = 4;
-      break;
-    default:
-      heartNumber = 7;
-      break;
-  }
-  console.log('saveWord pries update', JSON.parse(JSON.stringify(appState)))
-  
-  updateState({
-    view: "game",
-    game: {
-      hearts: heartNumber,
-      // letters: []
+    switch (parseInt(difficulty)) {
+      case 0:
+        heartNumber = 7;
+        break;
+      case 1:
+        heartNumber = 5;
+        break;
+      case 2:
+        heartNumber = 4;
+        break;
+      default:
+        heartNumber = 7;
+        break;
     }
-  });
-  console.log('saveWord pp update', JSON.parse(JSON.stringify(appState)))
+
+    updateState({
+      view: "game",
+      game: {
+        hearts: heartNumber,
+        initHearts: heartNumber,
+        crosses: 0
+      }
+    });
+  }
 }
 
 function StartView() {
@@ -56,7 +56,6 @@ function StartView() {
     <Card title="Welcome to kartuves!">
       <div>
         <input
-          value={appState.get().word}
           className="input input--center"
           type="password"
           onChange={e => handleChange(e.target)}

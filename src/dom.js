@@ -7,7 +7,6 @@ const dom = {
     this.render(elementToRender);
   },
   reinitialize: function() {
-    console.log("k");
     this.events.forEach(element => {
       document
         .querySelector(`[data=${element.hash}]`)
@@ -18,7 +17,6 @@ const dom = {
   },
   h_render: function(element) {
     const focused = document.activeElement;
-    console.log(focused);
     
     document.querySelectorAll("div")[1].remove();
     this.application.appendChild(element);

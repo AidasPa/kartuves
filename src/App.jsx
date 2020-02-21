@@ -5,18 +5,11 @@ import StartView from "./views/StartView.js";
 import GameView from "./views/GameView.js";
 
 function View() {
-  console.log(sessionStorage.getItem("game") === undefined);
-
-  if (sessionStorage.getItem("game") !== null) {
-    return <GameView />;
-  } else {
-    switch (appState.get().view) {
-      case "start":
-        return <StartView />;
-
-      default:
-        return <GameView />;
-    }
+  switch (appState.state.view) {
+    case "start":
+      return <StartView />;
+    default:
+      return <GameView />;
   }
 }
 function App(props) {

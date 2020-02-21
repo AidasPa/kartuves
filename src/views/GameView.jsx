@@ -1,21 +1,24 @@
 import dom from "../dom.js";
 import chars from "../data/chars.js";
 
+import leaveGame from "../services/leaveGame.js";
+
 import Card from "../components/Card.js";
 import Key from "../components/Key.js";
+import EndGameModal from "../components/EndGameModal.js";
 
-import Modal from "../components/Modal.js";
-
-function leaveGame() {
-  sessionStorage.clear();
-  updateState({ view: "start", game: {} });
-}
+window.addEventListener("beforeunload", function(e) {
+  if (appState.get().game.started) {
+    e.preventDefault();
+    e.returnValue = "";
+  }
+});
 
 let hearts = [];
 
+
 function Hearts() {
   hearts = [];
-  console.log(appState.get().game.hearts);
 
   for (let i = 0; i < appState.get().game.hearts; i++) {
     hearts.push(<span>❤️</span>);
@@ -24,34 +27,52 @@ function Hearts() {
 }
 
 function checkIfLetterFound(letter) {
-  console.log(appState);
-  console.log(appState.get().game.letters.indexOf(letter));
-  
-  // if (appState.get().game.letters.indexOf(letter) >= 0) {
-  //   return "key key--correct";
-  // } else {
-  //   return "key";
-  // }
+  if (appState.get().game.letters[letter] !== undefined) {
+    if (appState.get().game.letters[letter]) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return null;
+  }
 }
 
 function GameView() {
-  
-  console.log(appState);
+  console.log(appState.get().game.hearts);
   return (
     <div>
+      <EndGameModal a="b"/>
       <Card noTitle={true} heightAuto={true}>
         <div>
           <div className="card__title text--center">
             <Hearts />
             <hr />
-            {appState.get().game.word.split("").map(() => (
-              <div className="letter"></div>
-            ))}
+            {appState
+              .get()
+              .game.word.split("")
+              .map(l => (
+                <div className="letter">
+                  {checkIfLetterFound(l) !== null &&
+                  checkIfLetterFound(l) !== false
+                    ? l
+                    : ""}
+                </div>
+              ))}
           </div>
           <div className="clear"></div>
           <hr />
           {chars.map(c => (
-            <Key key={c.toUpperCase()} classes={checkIfLetterFound(c)} />
+            <Key
+              key={c.toUpperCase()}
+              classes={
+                checkIfLetterFound(c)
+                  ? "key key--correct"
+                  : checkIfLetterFound(c) !== null
+                  ? "key key--wrong"
+                  : "key"
+              }
+            />
           ))}
           <div className="clear"></div>
           <hr />
