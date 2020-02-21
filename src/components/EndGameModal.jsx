@@ -1,7 +1,6 @@
 import dom from "../dom.js";
 import Modal from "./Modal.js";
-import leaveGame from "../services/leaveGame.js"
-
+import leaveGame from "../services/leaveGame.js";
 
 function EndGameModal(props) {
   return (
@@ -23,7 +22,9 @@ function EndGameModal(props) {
               !
             </p>
           ) : (
-            ""
+            <p>
+              The word was <b>{appState.get().game.word}!</b>
+            </p>
           )}
           <hr />
           <button
